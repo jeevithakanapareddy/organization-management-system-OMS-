@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Registration Form</title>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>  
+<style>
+
+
+
+h1{
+   text-align: center;
+   font-style: inherit;
+   color:#0c10e9ea
+}
+
+th,td{
+
+   font-style:oblique;
+   font-size:large;
+   font-weight: bold;
+   color:rgba(243,150, 9, 0.918)
+}
+
+</style>
+</head>
+<body style="background-color: black;"><center>
+   <h1>Employee Registration form</h1>
+<form  id="form1" action="/empInsert" method="post" >  
+<table> 
+   <tr>
+      <td>firstname:</td>
+      <td><input type="text" id="fname" onblur="flname()" ></input></td>
+      </tr>
+      <tr><td></td>
+         <td><p id="f"></p></td></tr>
+      <tr>
+      <tr>
+         <td>lastname:</td>
+         <td><input type="text" id="lname" onblur="lname1()" ></input></td>
+      </tr>
+      <tr><td></td>
+         <td><p id="l"></p></td></tr>
+      <tr>
+
+         <tr>
+            <td>date of birth:</td>
+            <td><input type="date" id="db" onblur="dateofbirth()" ></input></td>
+         </tr>
+         <tr><td></td>
+            <td><p id="db1"></p></td></tr>
+         <tr>        
+            
+
+            <td>gender:</td>
+            <td><input type="radio" id="g1" name="sj" value="f"  required >female</input>
+                <input type="radio" id="g" name="sj"value="m" required >male</input><br>
+            </td>
+
+            <tr>
+               <td>Skills:</td>
+               <td><input type="checkbox" id="ip" name="skills"  onchange="skills1()" >Java </input>
+                  <input type="checkbox" id="ip" name="skills" onchange="skills1()">SQL</input>
+                  <input type="checkbox" id="ip"  name="skills" onchange="skills1()">Springboot</input>
+                  <input type="checkbox" id="ip" name="skills" onchange="skills1()">HTML</input>
+               </td>
+            </tr>
+            <tr><td></td>
+               <td><p id="sk"></p></td></tr>
+
+<tr><td>password:</td>
+<td><input type="password" id="pas" onblur="password()"></input></td>
+</tr>
+<tr><td></td>
+   <td><p id="p12"></p></td></tr>
+
+   <td>phonenumber:</td>
+   <td><input type="text" id="phone" onblur="phoneno()" ></td>
+</tr>
+<tr><td></td>
+   <td><p id="p1"></p></td></tr>
+
+<tr>
+   <td>email:</td>
+   <td><input type="text" id="em" onblur="email1()"></input></td>
+</tr>
+<tr><td></td>
+   <td><p id="e1"></p></td></tr>
+  
+  </table>
+  <input type="submit"   onclick="submit1()" ></input>
+
+  <button type="reset"> Reset </button>
+</form></center>
+
+
+<script>
+   var str="";
+   var count=0;
+   // firstname
+   
+   function flname(){
+       
+    var name =document.getElementById("fname").value ;
+   var a=/^[A-Za-z]+$/;
+   
+   if(!name.match(a)){
+   if(name=="")
+   document.getElementById("f").innerHTML="field can't be empty!!!";
+   else
+    document.getElementById("f").innerHTML="please enter only characters!!!";
+   }
+   else if(name.length>60){
+      document.getElementById("f").innerHTML="enter below 60 charcters only!!! ";
+   }else{
+    
+     document.getElementById("f").innerHTML="";
+   str=str+"a";
+   }}
+   
+   function lname1(){
+       
+    var name =document.getElementById("lname").value ;
+   var a=/^[A-Za-z]+$/;
+   
+   if(!name.match(a)){
+   if(name=="")
+   document.getElementById("l").innerHTML="field can't be empty!!!";
+   else
+    document.getElementById("l").innerHTML="please enter only characters!!!";
+   }
+   else if(name.length>60){
+      document.getElementById("l").innerHTML="enter below 60 charcters only!!! ";
+   }else{
+    
+     document.getElementById("l").innerHTML="";
+   str=str+"b";
+   }}
+   
+   // phone number
+   
+   function phoneno(){
+   
+      var name=document.getElementById("phone").value;
+      var a=/^[0-9]+$/;
+     //console.log(a1+" "+!name1.match(a1));
+   if(!name.match(a)){
+     // console.log(a+"1 "+!name.match(a));
+   if(name=="")
+      document.getElementById("p1").innerHTML="field can't be empty!!!";
+   else
+      document.getElementById("p1").innerHTML="please enter digits only !!!";
+       
+   }  
+   else if(name.length!=10){
+       document.getElementById("p1").innerHTML="please enter valid phone number!!!";
+   }else{
+     document.getElementById("p1").innerHTML="";
+      str=str+"c";
+   }}
+   
+   
+   // password 
+   
+   function password(){
+   
+     var name=document.getElementById("pas").value;
+      var a=/^[A-Z]+[A-Za-z0-9@!~%$#*]{8,16}$/;
+      if(!name.match(a)){
+     // console.log(a+"1 "+!name.match(a));
+      if(name=="")
+      document.getElementById("p12").innerHTML="field can't be empty!!!";
+      else
+      document.getElementById("p12").innerHTML="not strong  pass !!!";   
+   }  
+   else{
+     str=str+"d";
+     document.getElementById("p12").innerHTML="";
+   }
+   }
+   
+   // email 
+   
+   function email1(){
+      
+      var name=document.getElementById("em").value;
+      var a=/^[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-Z]+$/;
+     // var a = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]+$/;
+      if(!name.match(a)){
+      if(name=="")
+      document.getElementById("e1").innerHTML="field can't be empty!!!";
+      else
+      document.getElementById("e1").innerHTML=" enter valid mail !!!";   
+   }  
+   else{
+      str=str+"e";
+     document.getElementById("e1").innerHTML="";
+   } 
+     }
+   // date of birth 
+   
+     function dateofbirth(){
+      const name=document.getElementById("db");
+      const today = new Date();
+      const dob = new Date(name.value);
+     // console.log(dob);
+   
+     if(dob=="Invalid Date"){
+         document.getElementById("db1").innerHTML="field can't be empty!!!";
+      }else 
+      if(dob>today){
+         document.getElementById("db1").innerHTML="date should be past !!!";
+   
+      } else{
+        str=str+"f";
+         document.getElementById("db1").innerHTML="";
+      }
+      
+   }
+   
+   function skills1() {
+         var checkboxes = document.querySelectorAll('input[name="skills"]:checked');
+         if (checkboxes.length < 2) {
+            console.log("hii");
+           document.getElementById("sk").innerHTML="Please select at least two skills !!!";
+         }else{
+            document.getElementById("sk").innerHTML="";
+            str=str+"g"
+         }
+       }
+   // function skills(){
+   //    //var count=count++;
+   // var name = document.querySelectorAll('input[name="skills"]:checked');
+   // if (name.length < 2) {
+   // alert('Please select at least 2 skills.');
+   // }
+   //}
+   
+   
+   function submit1(){
+     console.log(str);
+     if(str.includes("a") && str.includes("b") && str.includes("c") && str.includes("d") && str.includes("e") &&str.includes("f") &&str.includes("g")){
+         alert("submitted");
+      }else{
+         alert("check fileds");
+      }
+     
+   }
+   
+   </script>
+</body>
+</html>
